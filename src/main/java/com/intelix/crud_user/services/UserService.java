@@ -34,8 +34,7 @@ public class UserService implements UserInterface {
 
     @Override
     public void delete(long id) {
-        // TODO Auto-generated method stub
-        
+        this.userRepository.deleteById(id);
     }
 
     @Override
@@ -46,21 +45,24 @@ public class UserService implements UserInterface {
     }
 
     @Override
-    public Optional<User> getById(long id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Optional<User> getByName(String name) {
-        // TODO Auto-generated method stub
-        return null;
+    public User getById(long id) {
+        return this.userRepository.getById(id);
     }
 
     @Override
     public User update(long id, User entity) {
-        // TODO Auto-generated method stub
-        return null;
+        User user = this.userRepository.getById(id);
+        user.setEmail(
+                !entity.getEmail().isEmpty() && entity.getEmail() != null ? entity.getEmail() : user.getEmail());
+        user.setFirstName(
+                !entity.getFirstName().isEmpty() && entity.getFirstName() != null ? entity.getFirstName()
+                        : user.getFirstName());
+        user.setLastName(!entity.getLastName().isEmpty() && entity.getLastName() != null ? entity.getLastName()
+                : user.getLastName());
+        user.setUsername(!entity.getUsername().isEmpty() && entity.getUsername() != null ? entity.getUsername()
+                : user.getUsername());
+        this.userRepository.save(user);
+        return user;
     }
-    
+
 }

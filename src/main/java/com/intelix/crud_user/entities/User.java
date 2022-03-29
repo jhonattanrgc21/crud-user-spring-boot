@@ -26,7 +26,7 @@ public class User {
     private String firstName;
 
     @Column(name = "last_name", nullable = false, length = 25, updatable = true)
-    private String LastName;
+    private String lastName;
 
     @Column(name = "username", unique = true, length = 15)
     private String username;
@@ -38,8 +38,8 @@ public class User {
     private String password;
 
     // Relations Ship
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "role_id")
+    anyToOne(optional = false)
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -48,12 +48,12 @@ public class User {
     private List<Project> projects;
 
     // Constructor
-    public User(String firstName, String lastName, String username, String email) {
+    public User(String firstName, String lastName, String username, String email, String password, Role role: ull
         this.firstName = firstName;
-        LastName = lastName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
-    }
+        this.password = password;
 
     // Getters
     public String getFirstName() {
@@ -61,7 +61,7 @@ public class User {
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public String getUsername() {
@@ -90,7 +90,7 @@ public class User {
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        lastName = lastName;
     }
 
     public void setUsername(String username) {
@@ -105,7 +105,7 @@ public class User {
         this.password = password;
     }
 
-    public void setRole(Role role) {
+    blic void setRole(Role role) {
         this.role = role;
     }
 
@@ -145,7 +145,7 @@ public class User {
     // To String
     @Override
     public String toString() {
-        return "User [LastName=" + LastName + ", email=" + email + ", firstName=" + firstName + ", id=" + id
+        return "User [LastName=" + lastName + ", email=" + email + ", firstName=" + firstName + ", id=" + id
                 + ", username=" + username + "]";
     }
 

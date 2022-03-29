@@ -10,9 +10,7 @@ public interface CrudInterface<T> {
 
     List<T> getAll();
 
-    Optional<T> getById(long id);
-
-    Optional<T> getByName(String name);
+    T getById(long id);
 
     void delete(long id);
 }
